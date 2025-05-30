@@ -1,0 +1,58 @@
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+# Ignore build files
+*.class
+
+# Ignore Maven and Gradle directories
+target/
+*.jar
+*.war
+*.ear
+
+# Ignore IntelliJ IDEA and Eclipse directories
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+
+# Ignore logs and temporary files
+logs/
+*.log
+
+# Ignore operating system files
+.DS_Store
+Thumbs.db
+
+# Ignore dependencies downloaded by Gradle and Maven
+.gradle/
+.mvn/
+
+# Ignore Lombok configuration files
+lombok.config
