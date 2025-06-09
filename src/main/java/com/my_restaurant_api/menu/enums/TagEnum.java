@@ -26,4 +26,8 @@ public enum TagEnum {
 		}
 		throw new RuntimeException("Tag not found");
 	}
+	
+	public Long getId() {
+		return this.id;
+	}
 }

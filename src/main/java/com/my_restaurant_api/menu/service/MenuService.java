@@ -5,9 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import com.my_restaurant_api.menu.dto.MenuDto;
 import com.my_restaurant_api.menu.mapper.MenuMapper;
 import com.my_restaurant_api.menu.record.MenuRecord;
 import com.my_restaurant_api.menu.repository.MenuRepository;
@@ -19,24 +17,25 @@ public class MenuService {
 	private MenuRepository menuRepository;
 
 	public MenuRecord findById(@PathVariable("id") Long id) {
-		return MenuMapper.toRecord(menuRepository.findById(id).orElse(null));
+		return MenuMapper.toRecord(menuRepository.findById(id).orElseThrow(() -> new RuntimeException("Menu not found!")));
 	}
 	
 	public List<MenuRecord> list() {
 		return MenuMapper.toRecordList(menuRepository.findAll());
 	}
 	
-	public MenuDto save(@RequestBody MenuDto dto) {
-		//TODO repository call...
-		return null;
+	public MenuRecord save(MenuRecord menuRecord) { //TODO Fix mapping error and 'not found' error
+		var menu = MenuMapper.toEntity(menuRecord);
+		return MenuMapper.toRecord(menuRepository.save(menu));
 	}
 	
-	public MenuDto put(@RequestBody MenuDto dto) {
-		//TODO repository call...
-		return null;
+	public MenuRecord put(MenuRecord menuRecord) { //TODO Fix mapping error and 'not found' error
+		var menu = MenuMapper.toEntity(menuRecord);
+		return MenuMapper.toRecord(menuRepository.save(menu));
 	}
 	
 	public void delete(@PathVariable("id") Long id) {
-		//TODO repository call...
+		var menu = menuRepository.findById(id);
+		menuRepository.delete(menu.orElseThrow(() -> new RuntimeException("Menu not found!")));
 	}
 }

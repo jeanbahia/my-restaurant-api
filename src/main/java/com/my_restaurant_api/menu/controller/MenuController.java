@@ -33,12 +33,12 @@ public class MenuController {
 	
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public MenuDto save(@RequestBody MenuDto dto) {
-		return menuService.save(dto);
+		return MenuMapper.toDto(menuService.save(MenuMapper.toRecord(dto)));
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT, consumes= MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public MenuDto put(@RequestBody MenuDto dto) {
-		return menuService.put(dto);
+		return MenuMapper.toDto(menuService.put(MenuMapper.toRecord(dto)));
 	}
 	
 	@RequestMapping(path = "/{id}",method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
